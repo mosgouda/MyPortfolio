@@ -30,6 +30,8 @@ namespace infrastructure
                 }
                 );
 
+            
+
 
         }
         public DbSet<Owner> Owner { get; set; }

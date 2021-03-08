@@ -44,7 +44,9 @@ namespace infrastructure.Reposotry
         public void Update(T entity)
         {
             table.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified; 
+            _context.Entry(entity).State = EntityState.Modified;
+            
+             
         }
     }
 }

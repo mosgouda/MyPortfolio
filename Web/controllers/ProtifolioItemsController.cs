@@ -21,7 +21,7 @@ namespace Web.controllers
         private readonly IUnitOfWork<ProtifolioItem> _rotfoliopitem;
         private readonly IHostingEnvironment _hosting;
 
-        [Obsolete]
+        
         public ProtifolioItemsController(IUnitOfWork<ProtifolioItem> rotfoliopitem, IHostingEnvironment Hosting )
         {
            _rotfoliopitem = rotfoliopitem;
@@ -66,15 +66,18 @@ namespace Web.controllers
         {
             if (ModelState.IsValid)
             {
+                
                 if (Model.File != null)
                 {
                     string uploads = Path.Combine(_hosting.WebRootPath, @"img\portfolio");
-                    string fullpath = Path.Combine(uploads,Model.File.FileName);
+                    string fullpath = Path.Combine(uploads, Model.File.FileName);
                     Model.File.CopyTo(new FileStream(fullpath, FileMode.Create));
                 }
+                
 
                 ProtifolioItem protifolioItem = new ProtifolioItem
                 {
+                    Id=Model.Id,
                     ProjectName = Model.ProjectName , 
                     Description = Model.Description , 
                     ImageURL = Model.File.FileName 
@@ -135,10 +138,11 @@ namespace Web.controllers
                         string fullpath = Path.Combine(uploads, model.File.FileName);
                         model.File.CopyTo(new FileStream(fullpath, FileMode.Create));
                     }
+                    
 
                     ProtifolioItem protifolioItem = new ProtifolioItem
                     {
-                        Id = model.Id,
+                        Id =model.Id,
                         ProjectName = model.ProjectName,
                         Description = model.Description,
                         ImageURL = model.File.FileName
